@@ -109,7 +109,6 @@ $this->title = 'My Yii Application';
 
 <?php
 $csrf = Yii::$app->request->getCsrfToken();
-
 $script = <<< JS
     var visitNumber = $('#visitNumber');
     var aboutCity = $('#aboutCity');
@@ -120,81 +119,65 @@ $script = <<< JS
     var onBusiness = $('#onBusiness');
     var incomeLevel = $('#incomeLevel');
     var occupation = $('#occupation');
-    var accomadationCost = $('#accomadationCost');
-   
-    
      
-        $('#check').click(function (){
-    $.ajax({
+    $('#check').click(function (){
+        
+        $.ajax({
            type: "POST",
            url: "site/tesst",
            data: { 
-
                 _csrf : '$csrf'
          	},
          	success:function(response) {
-               console.log(response['total_visits']);
-               console.log(response['best_thing']);
-               console.log(response['fav_attraction']);
-               console.log(response['destination_dining']);
-              console.log(response['method_transport']);
-              console.log(response['age_group']);
-              console.log(response['income_level']);
-              console.log(response['visit_purpose']);
-              console.log(response['accomodation_cost']);
-              console.log(response['occupation']);
-         
                
-               if(response['total_visits'] ===visitNumber.val()) {
+               if(response['total_visits'] ==visitNumber.val())   {
                    visitNumber.css('color','green');
-               } else if(response['best_thing'] ===aboutCity.val()){
-                    
+               }  else {
+                    visitNumber.css('color','red');
+               }
+               if(response['best_thing'] ==aboutCity.val()){
                    aboutCity.css('color','green');
-               }else if(response['fav_attraction'] ===favAttraction.val()){
-                    
+               } else {
+                      aboutCity.css('color','red');
+               } if(response['fav_attraction'] ==favAttraction.val()){
                    favAttraction.css('color','green');
-               }else if(response['destination_dining'] ===destinationDining.val()) {
-                  
+               } else {
+                     favAttraction.css('color','red');
+               } if(response['destination_dining'] ==destinationDining.val()) {
                    destinationDining.css('color','green');
-               }else if(response['method_transport'] ===transportMethod.val()){
-                   
+               } else {
+                     destinationDining.css('color','red');
+               } if(response['method_transport'] ==transportMethod.val()){
                    transportMethod.css('color','green');
-               }else if(response['age_group'] ===ageGroup.val()){
-                    
+               } else {
+                    transportMethod.css('color','red');
+               } if(response['age_group'] ==ageGroup.val()){
                    ageGroup.css('color','green');
+               } else {
+                    ageGroup.css('color','red');
                }
-               else if(response['income_level'] ===incomeLevel.val()){
-                   
+                if(response['income_level'] ==incomeLevel.val()){
                    incomeLevel.css('color','green');
+               } else {
+                      incomeLevel.css('color','red');
                }
-               else if(response['visit_purpose'] ===onBusiness.val()){
+                if(response['visit_purpose'] ==onBusiness.val()){
                     
                    onBusiness.css('color','green');
+               } else {
+                     onBusiness.css('color','red');
                }
-                 else if(response['accomodation_cost'] ===accomadationCost.val()){
+                  if(response['accomodation_cost'] ==accomadationCost.val()){
              
                    accomadationCost.css('color','green');
+               } else {
+                      accomadationCost.css('color','red'); 
                }
-                 else if (response['occupation'] === occupation.val()){
-                   
+                  if (response['occupation'] == occupation.val()){
                    occupation.css('color','green');
-               }            
-               
-               else {
-                     visitNumber.css('color','red');
-                     aboutCity.css('color','red');
-                     favAttraction.css('color','red');
-                     destinationDining.css('color','red');
-                     transportMethod.css('color','red');
-                     ageGroup.css('color','red');
-                     incomeLevel.css('color','red');
-                     ageGroup.css('color','red');
-                     incomeLevel.css('color','red');
-                     onBusiness.css('color','red');
-                     accomadationCost.css('color','red');
-                     occupation.css('color','red');
-                     
-               }
+               }     else {
+                    occupation.css('color','red');   
+               }        
 			}
         });
 });
@@ -234,8 +217,6 @@ $('#clear').click(function(){
              onBusiness.val('')
             accomadationCost.val('')
  }) ;
-
-
 JS;
 $this->registerJs($script);
 ?>
